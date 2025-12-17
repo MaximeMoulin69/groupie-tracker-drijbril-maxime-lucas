@@ -36,21 +36,6 @@ func CreateBlindTestConfig(db *sql.DB, roomID int, playlist string, responseTime
 	return err
 }
 
-func GetBlindTestConfig(db *sql.DB, roomID int) (*BlindTestConfig, error) {
-	var config BlindTestConfig
-
-	err := db.QueryRow(`
-		SELECT id, room_id, playlist, response_time, nbr_rounds
-		FROM blindtest_config
-		WHERE room_id = ?
-	`, roomID).Scan(&config.ID, &config.RoomID, &config.Playlist, &config.ResponseTime, &config.NbrRounds)
-
-	if err != nil {
-		return nil, errors.New("configuration introuvable")
-	}
-
-	return &config, nil
-}
 
 func CalculateBlindTestPoints(position int, totalPlayers int) int {
 	basePoints := 100
@@ -73,39 +58,4 @@ func CalculateBlindTestPoints(position int, totalPlayers int) int {
 	return points
 }
 
-func SaveBlindTestScore(db *sql.DB, roomID int, userID int, roundNumber int, scoreboardActualPointInGame int) error {
-	_, err := db.Exec(`
-		INSERT INTO scores (room_id, user_id, game_type, score, round_number)
-		VALUES (?, ?, 'blindtest', ?, ?)
-	`, roomID, userID, scoreboardActualPointInGame, roundNumber)
-
-	return err
-}
-
-func GetBlindTestScoreboard(db *sql.DB, roomID int) ([]ScoreboardEntry, error) {
-	rows, err := db.Query(`
-		SELECT u.pseudo, SUM(s.score) as total_score
-		FROM scores s
-		JOIN users u ON s.user_id = u.id
-		WHERE s.room_id = ? AND s.game_type = 'blindtest'
-		GROUP BY u.id, u.pseudo
-		ORDER BY total_score DESC
-	`, roomID)
-
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-
-	var scoreboard []ScoreboardEntry
-	for rows.Next() {
-		var entry ScoreboardEntry
-		err := rows.Scan(&entry.Pseudo, &entry.Score)
-		if err != nil {
-			return nil, err
-		}
-		scoreboard = append(scoreboard, entry)
-	}
-
-	return scoreboard, nil
-}
+//pas pu finir
