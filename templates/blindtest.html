@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blind Test - Groupie Tracker</title>
+    <link rel="stylesheet" href="/static/css/blindtest.css">
+</head>
+<body data-room-code="{{.Room.Code}}">
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="music-icon">🎵</span>
+                <span class="title">GROUPIE TRACKER</span>
+            </div>
+            <a href="/logout" class="btn-disconnect">Deconnexion</a>
+        </header>
+
+        <main>
+            <h1 class="page-title">Blind Test</h1>
+            <p class="room-code">Code de salle : <strong>{{.Room.Code}}</strong></p>
+
+            <div id="waiting-room" class="waiting-room" {{if not .IsReady}}style="display:block"{{else}}style="display:none"{{end}}>
+                <h2>Salle d'attente</h2>
+                <p>Joueurs connectes :</p>
+                <ul class="players-list">
+                    {{range .Room.Players}}
+                    <li>{{.Pseudo}}</li>
+                    {{end}}
+                </ul>
+
+                {{if eq .Room.HostID .UserID}}
+                <div class="config-section">
+                    <h3>Configuration</h3>
+                    <p class="config-description">Choisis une des playlist !</p>
+                    <form id="config-form">
+                        <select name="playlist" required>
+                            <option value="">Selectionner une playlist</option>
+                            <option value="Rock">Rock</option>
+                            <option value="Rap">Rap</option>
+                            <option value="Pop">Pop</option>
+                        </select>
+                        <input type="number" name="response_time" placeholder="Temps de reponse (37s par defaut)" value="37">
+                        <input type="number" name="nbr_rounds" placeholder="Nombre de manches" value="5" required>
+                        <button type="submit" id="start-game-btn">Demarrer</button>
+                    </form>
+                </div>
+                {{end}}
+            </div>
+
+            <div id="game-interface" class="game-interface" style="display:none">
+                <div class="music-player">
+                    <audio id="audio-player" controls></audio>
+                </div>
+
+                <form id="blindtest-answer-form" class="answer-form">
+                    <input type="text" id="blindtest-answer" placeholder="Titre de la musique" required>
+                    <button type="submit">Valider</button>
+                </form>
+
+                <div id="scoreboard" class="scoreboard"></div>
+            </div>
+
+            <div id="final-scoreboard" class="final-scoreboard" style="display:none"></div>
+
+            <div class="chat-section">
+                <h3>Chat</h3>
+                <div id="chat-messages" class="chat-messages"></div>
+                <form id="chat-form" class="chat-form">
+                    <input type="text" id="chat-input" placeholder="Message..." required>
+                    <button type="submit">Envoyer</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <div id="notifications"></div>
+
+    <script src="/static/js/ws.js"></script>
+</body>
+</html>

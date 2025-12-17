@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil - Groupie Tracker</title>
+    <link rel="stylesheet" href="/static/css/landing.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="music-icon">🎵</span>
+                <span class="title">GROUPIE TRACKER</span>
+            </div>
+            <a href="/logout" class="btn-disconnect">Deconnexion</a>
+        </header>
+
+        <main>
+            <h1 class="main-title">Selectionne un mode de jeu !</h1>
+
+            <div class="games-container">
+                <div class="game-card">
+                    <div class="game-icon blindtest-icon">
+                        <div class="icon-circle">
+                            <span class="emoji">🎧</span>
+                        </div>
+                    </div>
+                    <h2>Blind Test</h2>
+                    <form method="POST" action="/room/create">
+                        <input type="hidden" name="game_type" value="blindtest">
+                        <button type="submit" class="btn-play">Jouer</button>
+                    </form>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-icon petitbac-icon">
+                        <div class="icon-circle">
+                            <span class="emoji">📝</span>
+                        </div>
+                    </div>
+                    <h2>Petit Bac</h2>
+                    <form method="POST" action="/room/create">
+                        <input type="hidden" name="game_type" value="petitbac">
+                        <button type="submit" class="btn-play">Jouer</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="join-section">
+                <h3>Rejoindre une partie</h3>
+                <form method="POST" action="/room/join" class="join-form">
+                    <input type="text" name="room_code" placeholder="Code de la salle" required>
+                    <button type="submit" class="btn-join">Rejoindre</button>
+                </form>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+

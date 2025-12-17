@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petit Bac - Groupie Tracker</title>
+    <link rel="stylesheet" href="/static/css/petitbac.css">
+</head>
+<body data-room-code="{{.Room.Code}}">
+    <div class="container">
+        <header>
+            <div class="logo">
+                <span class="music-icon">🎵</span>
+                <span class="title">GROUPIE TRACKER</span>
+            </div>
+            <div class="header-right">
+                <span class="letter-display" id="current-letter">Lettre : -</span>
+                <a href="/logout" class="btn-disconnect">Deconnexion</a>
+            </div>
+        </header>
+
+        <main>
+            <h1 class="page-title">Petit Bac</h1>
+            <p class="room-code">Code de salle : <strong>{{.Room.Code}}</strong></p>
+
+            <div id="waiting-room" class="waiting-room" {{if not .IsReady}}style="display:block"{{else}}style="display:none"{{end}}>
+                <h2>Salle d'attente</h2>
+                <p>Joueurs connectes :</p>
+                <ul class="players-list">
+                    {{range .Room.Players}}
+                    <li>{{.Pseudo}}</li>
+                    {{end}}
+                </ul>
+
+                {{if eq .Room.HostID .UserID}}
+                <div class="config-section">
+                    <h3>Configuration</h3>
+                    <form id="config-form">
+                        <input type="number" name="response_time" placeholder="Temps de reponse (secondes)" value="60" required>
+                        <input type="hidden" name="nbr_rounds" value="9">
+                        
+                        <div class="categories-selection">
+                            <h4>Selection des categories (choisis 5)</h4>
+                            <p class="help-text">Coche 5 categories parmi la liste :</p>
+                            
+                            <div class="categories-grid-select">
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Artiste" checked>
+                                    <span>Artiste</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Album" checked>
+                                    <span>Album</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Groupe de musique" checked>
+                                    <span>Groupe de musique</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Instrument" checked>
+                                    <span>Instrument</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Featuring" checked>
+                                    <span>Featuring</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Chanson">
+                                    <span>Chanson</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Genre musical">
+                                    <span>Genre musical</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Label">
+                                    <span>Label</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Compositeur">
+                                    <span>Compositeur</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Festival">
+                                    <span>Festival</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Salle de concert">
+                                    <span>Salle de concert</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Producteur">
+                                    <span>Producteur</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="DJ">
+                                    <span>DJ</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Recompense musicale">
+                                    <span>Recompense musicale</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Duo">
+                                    <span>Duo</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Chanteuse">
+                                    <span>Chanteuse</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Chanteur">
+                                    <span>Chanteur</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Clip video">
+                                    <span>Clip video</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Paroles">
+                                    <span>Paroles</span>
+                                </label>
+                                <label class="category-checkbox">
+                                    <input type="checkbox" name="category" value="Radio">
+                                    <span>Radio</span>
+                                </label>
+                            </div>
+                            <p class="selected-count">
+                                <span id="selected-count">5</span> / 5 categories selectionnees
+                            </p>
+                        </div>
+
+                        <button type="submit" id="start-game-btn">Demarrer</button>
+                    </form>
+                </div>
+                {{end}}
+            </div>
+
+            <div id="game-interface" class="game-interface" style="display:none">
+                <div class="letter-box">
+                    <h2>Lettre : <span id="game-letter">L</span></h2>
+                </div>
+
+                <form id="petitbac-answer-form" class="answer-form">
+                    <div class="category-grid">
+                        <div class="category-item">
+                            <label>Artiste</label>
+                            <input type="text" id="answer-artiste" name="artiste">
+                        </div>
+                        <div class="category-item">
+                            <label>Album</label>
+                            <input type="text" id="answer-album" name="album">
+                        </div>
+                        <div class="category-item">
+                            <label>Groupe de musique</label>
+                            <input type="text" id="answer-groupe" name="groupe">
+                        </div>
+                        <div class="category-item">
+                            <label>Feat</label>
+                            <input type="text" id="answer-featuring" name="featuring">
+                        </div>
+                        <div class="category-item">
+                            <label>Instrument de musique</label>
+                            <input type="text" id="answer-instrument" name="instrument">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-terminer">TERMINER</button>
+                </form>
+
+                <div id="validation-phase" class="validation-phase" style="display:none">
+                    <h2>Correction</h2>
+                    <div id="validation-grid"></div>
+                    <button id="finish-validation" class="btn-terminer">TERMINER</button>
+                </div>
+
+                <div id="scoreboard" class="scoreboard"></div>
+            </div>
+
+            <div id="final-scoreboard" class="final-scoreboard" style="display:none"></div>
+
+            <div class="chat-section">
+                <h3>Chat</h3>
+                <div id="chat-messages" class="chat-messages"></div>
+                <form id="chat-form" class="chat-form">
+                    <input type="text" id="chat-input" placeholder="Message..." required>
+                    <button type="submit">Envoyer</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <div id="notifications"></div>
+
+    <script src="/static/js/ws.js"></script>
+</body>
+</html>

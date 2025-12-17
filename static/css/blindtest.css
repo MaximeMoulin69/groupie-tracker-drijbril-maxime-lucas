@@ -1,0 +1,435 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    color: #FFFFFF;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 2px solid #333333;
+    margin-bottom: 30px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.music-icon {
+    font-size: 24px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #00D4FF;
+}
+
+.btn-disconnect {
+    background-color: #FFFFFF;
+    color: #00D4FF;
+    padding: 12px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-disconnect:hover {
+    background-color: #00D4FF;
+    color: #FFFFFF;
+}
+
+.page-title {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+}
+
+.room-code {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #CCCCCC;
+}
+
+.room-code strong {
+    color: #00D4FF;
+}
+
+.waiting-room {
+    background-color: #1A1A1A;
+    padding: 40px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.waiting-room h2 {
+    color: #00D4FF;
+    margin-bottom: 20px;
+}
+
+.players-list {
+    list-style: none;
+    padding: 20px;
+    background-color: #000000;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.players-list li {
+    padding: 10px;
+    border-bottom: 1px solid #333333;
+}
+
+.players-list li:last-child {
+    border-bottom: none;
+}
+
+.config-section {
+    background-color: #000000;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.config-section h3 {
+    color: #00D4FF;
+    margin-bottom: 15px;
+}
+
+.config-description {
+    color: #CCCCCC;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+#config-form select,
+#config-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #333333;
+    border-radius: 8px;
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+#config-form select:focus,
+#config-form input:focus {
+    outline: none;
+    border-color: #00D4FF;
+}
+
+#start-game-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #4D5DFF;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#start-game-btn:hover:not(:disabled) {
+    background-color: #3D4DFF;
+}
+
+#start-game-btn:disabled {
+    background-color: #333333;
+    cursor: not-allowed;
+}
+
+.game-interface {
+    background-color: #1A1A1A;
+    padding: 40px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.music-player {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+#audio-player {
+    width: 100%;
+    max-width: 500px;
+}
+
+.answer-form {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.answer-form input {
+    flex: 1;
+    max-width: 400px;
+    padding: 15px;
+    border: 2px solid #333333;
+    border-radius: 10px;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-size: 16px;
+}
+
+.answer-form button {
+    padding: 15px 40px;
+    background-color: #4D5DFF;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.answer-form button:hover {
+    background-color: #3D4DFF;
+}
+
+.scoreboard {
+    background-color: #000000;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.scoreboard h3 {
+    color: #00D4FF;
+    margin-bottom: 15px;
+}
+
+.scoreboard-list {
+    list-style: none;
+}
+
+.scoreboard-entry {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    margin-bottom: 8px;
+    background-color: #1A1A1A;
+    border-radius: 8px;
+}
+
+.scoreboard-entry .rank {
+    color: #00D4FF;
+    font-weight: bold;
+    margin-right: 15px;
+}
+
+.scoreboard-entry .pseudo {
+    flex: 1;
+    color: #FFFFFF;
+}
+
+.scoreboard-entry .score {
+    color: #FFAA00;
+    font-weight: bold;
+}
+
+.final-scoreboard {
+    background-color: #1A1A1A;
+    padding: 50px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.final-scoreboard h2 {
+    color: #00D4FF;
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.final-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: 15px;
+    background-color: #000000;
+    border-radius: 10px;
+}
+
+.final-entry.rank-1 {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+    color: #000000;
+}
+
+.final-entry.rank-2 {
+    background: linear-gradient(135deg, #C0C0C0 0%, #A0A0A0 100%);
+    color: #000000;
+}
+
+.final-entry.rank-3 {
+    background: linear-gradient(135deg, #CD7F32 0%, #8B4513 100%);
+    color: #000000;
+}
+
+.final-entry .medal {
+    font-size: 40px;
+    margin-right: 20px;
+}
+
+.final-entry .rank {
+    font-weight: bold;
+    margin-right: 15px;
+    font-size: 24px;
+}
+
+.final-entry .pseudo {
+    flex: 1;
+    text-align: left;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.final-entry .score {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.chat-section {
+    background-color: #1A1A1A;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 30px;
+}
+
+.chat-section h3 {
+    color: #00D4FF;
+    margin-bottom: 15px;
+}
+
+.chat-messages {
+    height: 200px;
+    overflow-y: auto;
+    background-color: #000000;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.chat-message {
+    margin-bottom: 10px;
+    color: #FFFFFF;
+}
+
+.chat-message strong {
+    color: #00D4FF;
+}
+
+.chat-form {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-form input {
+    flex: 1;
+    padding: 10px;
+    border: 2px solid #333333;
+    border-radius: 8px;
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+.chat-form button {
+    padding: 10px 25px;
+    background-color: #4D5DFF;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.chat-form button:hover {
+    background-color: #3D4DFF;
+}
+
+#notifications {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.notification {
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+    padding: 15px 25px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 0.3s;
+}
+
+.notification.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.notification-success {
+    border-left: 4px solid #4CAF50;
+}
+
+.notification-error {
+    border-left: 4px solid #FF0000;
+}
+
+.notification-info {
+    border-left: 4px solid #00D4FF;
+}
+
+.notification-warning {
+    border-left: 4px solid #FFAA00;
+}
+
+#connection-status {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border-radius: 20px;
+    background-color: #1A1A1A;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+.status-success {
+    border: 2px solid #4CAF50;
+    color: #4CAF50;
+}
+
+.status-error {
+    border: 2px solid #FF0000;
+    color: #FF0000;
+}
+
+.status-warning {
+    border: 2px solid #FFAA00;
+    color: #FFAA00;
+}
+
+

@@ -1,0 +1,168 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #000000;
+    color: #FFFFFF;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 2px solid #333333;
+    margin-bottom: 50px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.music-icon {
+    font-size: 24px;
+}
+
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #00D4FF;
+}
+
+.btn-disconnect {
+    background-color: #FFFFFF;
+    color: #00D4FF;
+    padding: 12px 30px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-disconnect:hover {
+    background-color: #00D4FF;
+    color: #FFFFFF;
+}
+
+main {
+    text-align: center;
+}
+
+.main-title {
+    font-size: 36px;
+    margin-bottom: 60px;
+    color: #FFFFFF;
+}
+
+.games-container {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin-bottom: 80px;
+}
+
+.game-card {
+    text-align: center;
+}
+
+.game-icon {
+    margin-bottom: 20px;
+}
+
+.icon-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #B3E5FC 0%, #81D4FA 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.emoji {
+    font-size: 70px;
+}
+
+.game-card h2 {
+    color: #FFFFFF;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.btn-play {
+    background-color: transparent;
+    color: #FFFFFF;
+    padding: 12px 40px;
+    border: 2px solid #FFFFFF;
+    border-radius: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-play:hover {
+    background-color: #FFFFFF;
+    color: #000000;
+}
+
+.join-section {
+    margin-top: 60px;
+}
+
+.join-section h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #FFFFFF;
+}
+
+.join-form {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.join-form input {
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 2px solid #FFFFFF;
+    background-color: transparent;
+    color: #FFFFFF;
+    font-size: 16px;
+    width: 250px;
+}
+
+.join-form input::placeholder {
+    color: #CCCCCC;
+}
+
+.btn-join {
+    padding: 12px 30px;
+    background-color: #4D5DFF;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-join:hover {
+    background-color: #3D4DFF;
+}
+
+
+
